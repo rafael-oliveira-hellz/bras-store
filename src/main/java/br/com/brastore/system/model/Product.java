@@ -122,7 +122,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Produto " + description + ", com Sku " + sku + " e pre�o de " + String.format("R$%.2f", sellPrice);
+        return "Produto [ " + description + ". SKU: " + sku + ". Preço: " + String.format("R$%.2f", sellPrice);
     }
 
     @Override

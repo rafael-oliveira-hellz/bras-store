@@ -20,7 +20,7 @@ public class TransactionService {
             throws InsufficientStockException, ProductNotFoundException {
         if (stockService.validatePurchase(transaction)) {
             Transaction savedTransaction = setTransaction(transaction);
-            return createMessageResponse(savedTransaction.getId(), " criada.");
+            return createMessageResponse(savedTransaction.getId());
         }
 
         return "Transação não criada!";
@@ -30,8 +30,8 @@ public class TransactionService {
         return transactionData.findAll();
     }
 
-    private String createMessageResponse(Integer id, String message) {
-        return "Transação com a ID: " + id + message;
+    private String createMessageResponse(Integer id) {
+        return "Transação com a ID: " + id + " criada.";
     }
 
     private Transaction setTransaction(Transaction transaction) {

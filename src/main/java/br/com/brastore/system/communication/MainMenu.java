@@ -196,8 +196,11 @@ public class MainMenu {
 
     public void initialStock() throws InvalidSaleValueException {
         ProductController controller = new ProductController();
-        controller.insertProduct("ADI2710231405050", "Calça masculina Adidas vermelha, tamanho XG, estação Verão", 10, 38.72, 220.00);
-        controller.insertProduct("CNL0111238045205", "Perfume Chanel 5 feminino ", 55, 38.50, 250.00);
-        controller.insertProduct("GUC1512239415353", "Cachecol branco Gucci Bebê, tamanho M", 55, 20.50, 85.40);
+        controller.insertProduct("ADD4310405023150", "Calça masculina Adidas vermelha, tamanho XG, estação Verão", 150, 38.72, 149.90);
+        controller.insertProduct("ZAR4110435023256", "Camiseta masculina Zara marrom, tamanho G, estação Primavera", 200, 100.00, 400.00);
+        controller.insertProduct("CNL0111045223805", "Perfume Chanel 5 feminino ", 55, 38.50, 250.00);
+        controller.insertProduct("GUC1013415323953", "Cachecol branco Gucci Bebê, tamanho M", 60, 99.99, 348.50);
+        controller.insertProduct("JLS3513425023354", "Blusa 13 Joules Bebê, tamanho RN, estação Outono", 100, 90.00, 280.00);
+        controller.insertProduct("MZN4511045123452", "Calçado Mizuno feminino azul, tamanho 43/44", 50, 82.00, 372.90);
     }
 }

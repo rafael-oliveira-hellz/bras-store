@@ -39,11 +39,11 @@ public class ProductController {
 
     public String listAll() {
         List<Stock> stocks = stock.listAll();
-        String txt = "";
+        String message = "";
         for (Stock stock : stocks) {
-            txt += stock.getProduct().toString() + ". quantidade: " + stock.getQuantity() + "\n";
+            message += stock.getProduct().toString() + ". Quantidade: " + stock.getQuantity() + " ]\n";
         }
-        return txt;
+        return message;
     }
 
     public String delete(String sku) throws ProductNotFoundException {

@@ -23,7 +23,7 @@ public class StockMenuCommunication {
             System.out.println("\nMarcas\n");
 
             for (BrandEnum brands : BrandEnum.values()) {
-                System.out.println(brands.getOption() + " " + brands.getDescription());
+                System.out.println(brands.getOption() + " - " + brands.getDescription());
             }
 
             try {
@@ -45,7 +45,7 @@ public class StockMenuCommunication {
             System.out.println("\nTamanho\n");
 
             for (SizeEnum sizes : SizeEnum.values()) {
-                System.out.println(sizes.getKey() + "  " + sizes.getDescription());
+                System.out.println(sizes.getKey() + " - " + sizes.getDescription());
             }
 
             try {
@@ -68,7 +68,7 @@ public class StockMenuCommunication {
             System.out.println("\nCategoria\n");
 
             for (CategoryEnum categories : CategoryEnum.values()) {
-                System.out.println(categories.getKey() + "  " + categories.getDescription());
+                System.out.println(categories.getKey() + " - " + categories.getDescription());
             }
 
             try {
@@ -91,7 +91,7 @@ public class StockMenuCommunication {
             System.out.println("\nEstação\n");
 
             for (SeasonEnum seasons : SeasonEnum.values()) {
-                System.out.println(seasons.getKey() + "  " + seasons.getDescription());
+                System.out.println(seasons.getKey() + " - " + seasons.getDescription());
             }
 
             try {
@@ -114,7 +114,7 @@ public class StockMenuCommunication {
             System.out.println("\nDepartamento\n");
 
             for (DepartmentEnum departments : DepartmentEnum.values()) {
-                System.out.println(departments.getKey() + "  " + departments.getDescription());
+                System.out.println(departments.getKey() + " - " + departments.getDescription());
             }
 
             try {
@@ -137,7 +137,7 @@ public class StockMenuCommunication {
             System.out.println("\nTipo\n");
 
             for (TypeOfProductEnum types : TypeOfProductEnum.values()) {
-                System.out.println(types.getKey() + "  " + types.getDescription());
+                System.out.println(types.getKey() + " - " + types.getDescription());
             }
 
             try {
@@ -160,7 +160,7 @@ public class StockMenuCommunication {
             System.out.println("\nCor\n");
 
             for (ColorEnum types : ColorEnum.values()) {
-                System.out.println(types.getKey() + "  " + types.getDescription());
+                System.out.println(types.getKey() + " - " + types.getDescription());
             }
 
             try {
