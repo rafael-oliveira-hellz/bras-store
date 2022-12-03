@@ -14,23 +14,33 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class TransactionCommunication {
+
+    // Inicializa o Scanner
     static Scanner input = new Scanner(System.in);
+
+    // Inicializa o ProductController
     static ProductController productController = new ProductController();
+
+    // Inicializa o TransactionController
     static TransactionController transactionController = new TransactionController();
 
-    public static void purchase() throws ProductNotFoundException, InsufficientStockException {
+    // Cria o método de venda
+    public static void sale() throws ProductNotFoundException, InsufficientStockException {
+        // Cria a lista de produtos em estoque
         List<Stock> cart = new ArrayList<>();
         String option = "s";
 
+        // Enquanto a opção for diferente de "n" o programa continua
         while (option.equalsIgnoreCase("S")) {
             System.out.print("Digite o SKU do produto: ");
-            String sku = input.nextLine();
+            String sku = input.nextLine(); // Recebe o SKU do produto
             int quantity = 0;
             boolean validate = false;
 
             while (!validate) {
                 try {
                     System.out.print("Digite a quantidade que deseja comprar: ");
+                    // Recebe a quantidade do produto
                     quantity = Integer.parseInt(input.nextLine());
                     validate = true;
                 } catch (Exception e) {
@@ -38,6 +48,7 @@ public class TransactionCommunication {
                 }
 
                 try {
+                    // Valida se o produto tem quantidade suficiente em estoque e adiciona o produto no carrinho
                     Stock stock = productController.validatePrePurchase(sku, quantity);
                     if (stock != null) {
                         cart.add(stock);
@@ -45,7 +56,6 @@ public class TransactionCommunication {
                     } else {
                         System.out.println("Quantidade insuficiente ou produto não encontrado!");
                     }
-
                 } catch (Exception e) {
                     System.out.println("Quantidade insuficiente ou produto não encontrado!");
                 }
@@ -76,17 +86,17 @@ public class TransactionCommunication {
 
         while (!validate) {
             System.out.print("\nDeseja inserir o CPF? S/N ");
-            char choice = input.nextLine().charAt(0);
+            char choice = input.nextLine().charAt(0); // Recebe a opção do usuário pegando apenas o primeiro caractere
 
             if (choice == 's' || choice == 'S') {
                 while (!validate) {
                     System.out.print("Digite o CPF: ");
-                    cpf = input.nextLine();
-                    if (cpf.length() == 11) {
+                    cpf = input.nextLine(); // Recebe o CPF do cliente
+                    if (cpf.length() == 11) { // Valida se o CPF tem 11 caracteres
                         validate = true;
                     } else {
                         System.err.println("O CPF deve possuir 11 dígitos!");
-                        RunTime.ThreadDelay();
+                        RunTime.ThreadDelay(); // Dá um delay antes d retornar para redigitação do CPF
                     }
                 }
             } else if (choice == 'n' || choice == 'N') {
@@ -97,6 +107,7 @@ public class TransactionCommunication {
             }
         }
 
+        // Cria a lista de métodos de pagamento
         for (PaymentMethodEnum payment : PaymentMethodEnum.values()) {
             System.out.println(payment.getPaymentMethodId() + "  " + payment.getPaymentMethod());
         }
@@ -109,9 +120,9 @@ public class TransactionCommunication {
         while (!validate) {
             try {
                 System.out.print("Escolha um método de pagamento pelo dígito: ");
-                payment = Integer.parseInt(input.nextLine());
+                payment = Integer.parseInt(input.nextLine()); // Recebe o método de pagamento
 
-                paymentData = checkPayment(payment);
+                paymentData = checkPayment(payment); // Valida o método de pagamento
                 if (paymentData == null || paymentData.equals("")) {
                     paymentData = Objects.requireNonNull(PaymentMethodEnum.getByPaymentMethodId(payment)).getPaymentMethod();
                 }
@@ -122,16 +133,17 @@ public class TransactionCommunication {
         }
 
         if (cpf.equals("")) {
-            System.out.println(transactionController.purchase(cart, name, payment, paymentData));
+            System.out.println(transactionController.purchase(cart, name, payment, paymentData)); // Realiza a compra sem o CPF
         } else {
-            System.out.println(transactionController.purchaseWithCpf(cart, name, cpf, payment, paymentData));
+            System.out.println(transactionController.purchaseWithCpf(cart, name, cpf, payment, paymentData)); // Realiza a compra com o CPF
         }
     }
 
     public static void listTransactions() {
         System.out.println(transactionController.listAll());
-    }
+    } // Lista todas as transações
 
+    // Cria o método de validação do método de pagamento
     public static String checkPayment(Integer option) {
         String data = null;
         String temp;
@@ -146,12 +158,14 @@ public class TransactionCommunication {
                         data = "Crédito\n" + "Número do cartão: ";
                         temp = input.nextLine();
 
+                        // Valida se o número do cartão tem 12 caracteres
                         if (temp.length() == 12 && temp.matches("[0-9]+")) {
                             data += temp + "\nCód. de Segurança: ";
 
                             System.out.print("Digite o código de segurança (CVV): ");
                             temp = input.nextLine();
 
+                            // Valida se o código de segurança tem 3 caracteres
                             if (temp.length() != 3) {
                                 System.err.println("Código de segurança inválido! O CVV deve possuir 3 dígitos!");
                             } else {
@@ -161,6 +175,7 @@ public class TransactionCommunication {
                                 System.out.print("Digite a data de validade: MM/AA");
                                 temp = input.nextLine();
 
+                                // Valida se a data de validade tem 5 caracteres
                                 if (temp.charAt(2) == '/' && temp.length() == 5) {
                                     String[] date = temp.split("/");
                                     int month = Integer.parseInt(date[0]);
@@ -234,7 +249,7 @@ public class TransactionCommunication {
                         validator = true;
                         return data;
                     } else {
-                        System.err.println("Chave Inv�lida");
+                        System.err.println("Chave Inválida");
                     }
                 }
                 break;

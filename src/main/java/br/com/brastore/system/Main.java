@@ -11,7 +11,7 @@ import br.com.brastore.system.exception.ProductNotFoundException;
  * @since 11/11/2022
  */
 
-public class App 
+public class Main
 {
     public static void main( String[] args ) throws InvalidSaleValueException, ProductNotFoundException, InsufficientStockException {
 

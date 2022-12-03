@@ -15,12 +15,14 @@ public class ProductController {
         this.stock = new StockService();
     }
 
+    // Valida se o produto existe no estoque
     public Stock validatePrePurchase(String sku, int quantity) throws ProductNotFoundException {
         Product product = stock.validateIndividualPurchase(sku, quantity);
         return new Stock(product, quantity);
 
     }
 
+    // Cria um novo produto
     public String insertProduct(String sku, String description, int quantity, double buyPrice, double sellPrice)
             throws InvalidSaleValueException {
         if (sku.length() != 16) {
@@ -65,6 +67,7 @@ public class ProductController {
         }
     }
 
+    // Atualiza um produto
     public String update(String sku, Double buyPrice, Double sellPrice)
             throws ProductNotFoundException, InvalidSaleValueException {
         Product product = stock.verifyIfExists(sku);

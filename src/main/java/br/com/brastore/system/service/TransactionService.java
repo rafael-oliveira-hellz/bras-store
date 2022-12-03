@@ -7,6 +7,7 @@ import br.com.brastore.system.model.Transaction;
 
 import java.util.List;
 
+// Service serve para fazer a lógica de negócio e chamar os métodos do Data para salvar e buscar os dados
 public class TransactionService {
     private final TransactionData transactionData;
     private final StockService stockService;

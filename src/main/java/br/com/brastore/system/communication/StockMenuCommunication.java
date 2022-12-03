@@ -22,7 +22,7 @@ public class StockMenuCommunication {
         while (!validate) {
             System.out.println("\nMarcas\n");
 
-            for (BrandEnum brands : BrandEnum.values()) {
+            for (BrandEnum brands : BrandEnum.values()) { // Lista as marcas disponíveis
                 System.out.println(brands.getOption() + " - " + brands.getDescription());
             }
 
@@ -246,30 +246,27 @@ public class StockMenuCommunication {
 
         }
 
-    }
-
-    public static void updateProductPrice() {
+    }    public static void updateProductPrice() {
         boolean validate = false;
         while (!validate) {
             System.out.println("\nAtualizar Preço do Estoque\n");
             try {
-                System.out.print("Digite o SKU do produto: ");
+                System.out.print("Digite o SKU do produto: \n");
                 String sku = input.nextLine();
-                System.out.print("Digite o preço de compra do produto: ");
+                System.out.print("Digite o preço de compra do produto: \n");
                 Double purchasePrice = input.nextDouble();
-                System.out.print("Digite o preço de venda do produto: ");
+                System.out.print("Digite o preço de venda do produto: \n");
                 Double salePrice = input.nextDouble();
                 validate = true;
                 productController.update(sku, purchasePrice, salePrice);
+                System.out.println("Preço atualizado com sucesso!");
             } catch (Exception e) {
                 System.out.println("Opção inválida");
                 continue;
             }
 
         }
-
-    }
-
+   }
     public static void deleteProduct() throws ProductNotFoundException {
         System.out.println("Digite o SKU do produto que será removido: ");
         String sku = input.nextLine();
